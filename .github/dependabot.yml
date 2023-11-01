@@ -1,0 +1,22 @@
+version: 2
+registries:
+  codev-maven:
+    type: maven-repository
+    url: "https://repo.codev.mitre.org/artifactory/idaass-maven"
+    username: ${{ secrets.CODEV_NAME_IDAASS_USERS }}
+    password: ${{ secrets.CODEV_TOKEN_IDAASS_USERS }}
+updates:
+  - package-ecosystem: "gradle"
+    directory: "/"
+    registries:
+      - codev-maven
+    schedule:
+      interval: "daily"
+    reviewers:
+      - "mitre-tdp/streaming"
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    reviewers:
+      - "mitre-tdp/streaming"
